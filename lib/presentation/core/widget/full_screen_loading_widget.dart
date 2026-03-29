@@ -6,15 +6,13 @@ class FullScreenLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: .infinity,
-          width: .infinity,
-          color: AppColors.surfaceDark,
-          
-        ),
-      ],
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      color: AppColors.loadingOverlay.withValues(alpha: 0.55),
+      child: const Center(
+        child: CircularProgressIndicator(color: AppColors.youtubePrimary),
+      ),
     );
   }
 }

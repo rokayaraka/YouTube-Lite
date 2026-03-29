@@ -12,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   void _openUrl(String title, String url) {
     Navigator.push(
       context,
@@ -25,39 +24,54 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.surfaceDark,
+      backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
+        backgroundColor: AppColors.backgroundDark,
+        elevation: 0,
         title: Row(
           children: [
-            Icon(Icons.play_arrow,color: Colors.white,),
-            Text(AppStrings.appName,),
-
-
-
-
+            Icon(Icons.play_arrow, color: AppColors.youtubePrimary),
+            const SizedBox(width: 8),
+            Text(
+              AppStrings.appName,
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.search,color: Colors.black,)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.notifications,color: Colors.black,)),
-
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search, color: AppColors.textPrimary),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications_none,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
-        
-      
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         children: [
           _buildSectionHeader(AppStrings.sectionBrowse),
           YoutubeNavFile(
             icon: Icons.home,
             label: AppStrings.navHome,
-            onTap: () => _openUrl(AppStrings.navHome, 'https://www.youtube.com/'),
+            onTap: () =>
+                _openUrl(AppStrings.navHome, 'https://www.youtube.com/'),
           ),
           YoutubeNavFile(
             icon: Icons.arrow_back_ios_rounded,
             label: AppStrings.navShorts,
-            onTap: () =>
-                _openUrl(AppStrings.navShorts, 'https://www.youtube.com/shorts/'),
+            onTap: () => _openUrl(
+              AppStrings.navShorts,
+              'https://www.youtube.com/shorts/',
+            ),
           ),
           YoutubeNavFile(
             icon: Icons.subscriptions,
@@ -70,23 +84,28 @@ class _HomeScreenState extends State<HomeScreen> {
           YoutubeNavFile(
             icon: Icons.abc,
             label: AppStrings.navExplore,
-            onTap: () =>
-                _openUrl(AppStrings.navExplore, 'https://www.youtube.com/feed/explore'),
+            onTap: () => _openUrl(
+              AppStrings.navExplore,
+              'https://www.youtube.com/feed/explore',
+            ),
           ),
           YoutubeNavFile(
             icon: Icons.abc,
             label: AppStrings.navTrending,
-            onTap: () =>
-                _openUrl(AppStrings.navTrending, 'https://www.youtube.com/feed/trending'),
+            onTap: () => _openUrl(
+              AppStrings.navTrending,
+              'https://www.youtube.com/feed/trending',
+            ),
           ),
-          
-
+          const Divider(color: AppColors.divider),
           _buildSectionHeader(AppStrings.sectionLibrary),
           YoutubeNavFile(
             icon: Icons.abc,
             label: AppStrings.navHistory,
-            onTap: () =>
-                _openUrl(AppStrings.navHistory, 'https://www.youtube.com/feed/history'),
+            onTap: () => _openUrl(
+              AppStrings.navHistory,
+              'https://www.youtube.com/feed/history',
+            ),
           ),
           YoutubeNavFile(
             icon: Icons.abc,
@@ -104,19 +123,24 @@ class _HomeScreenState extends State<HomeScreen> {
               'https://www.youtube.com/playlist?list=LL',
             ),
           ),
+          const Divider(color: AppColors.divider),
           _buildSectionHeader(AppStrings.sectionMore),
           YoutubeNavFile(
             icon: Icons.settings,
             label: AppStrings.navSettings,
-            onTap: () => _openUrl(AppStrings.navSettings, 'https://www.youtube.com/account'),
+            onTap: () => _openUrl(
+              AppStrings.navSettings,
+              'https://www.youtube.com/account',
+            ),
           ),
           YoutubeNavFile(
             icon: Icons.question_mark,
             label: AppStrings.navHelp,
-            onTap: () =>
-                _openUrl(AppStrings.navHelp, 'https://support.google.com/youtube'),
+            onTap: () => _openUrl(
+              AppStrings.navHelp,
+              'https://support.google.com/youtube',
+            ),
           ),
-          
         ],
       ),
     );
@@ -124,10 +148,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSectionHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 8, left: 4, bottom: 6),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppColors.textHint,
           fontSize: 12,
           fontWeight: FontWeight.w600,
@@ -135,5 +159,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }

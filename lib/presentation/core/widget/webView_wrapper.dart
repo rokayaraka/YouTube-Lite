@@ -16,6 +16,46 @@ class _WebViewWrapperState extends State<WebViewWrapper> {
   late final WebViewController controller;
   final ValueNotifier<bool> _isLoading = ValueNotifier(true);
 
+  Future<void> _hideYoutubeMasthead() async {
+    const script = '''
+      (function () {
+        var styleId = 'yt-lite-hide-masthead-style';
+        if (document.getElementById(styleId)) return;
+
+        var style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+          ytd-masthead,
+          #masthead-container,
+          #container.style-scope.ytd-masthead,
+          #start.style-scope.ytd-masthead,
+          #center.style-scope.ytd-masthead,
+          #end.style-scope.ytd-masthead,
+          ytm-mobile-topbar-renderer,
+          .mobile-topbar-header-content {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+          }
+
+          ytd-app,
+          ytd-page-manager,
+          #content,
+          #page-manager,
+          #contents {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+          }
+        `;
+
+        document.head.appendChild(style);
+      })();
+    ''';
+
+    await controller.runJavaScript(script);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -24,7 +64,10 @@ class _WebViewWrapperState extends State<WebViewWrapper> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String _) => _isLoading.value = true,
-          onPageFinished: (String _) => _isLoading.value = false,
+          onPageFinished: (String _) async {
+            await _hideYoutubeMasthead();
+            _isLoading.value = false;
+          },
           onWebResourceError: (WebResourceError _) => _isLoading.value = false,
           onNavigationRequest: (NavigationRequest request) {
             if (request.url.startsWith('https://www.youtube.com/') ||

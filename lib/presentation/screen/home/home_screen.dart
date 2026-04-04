@@ -30,7 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: Row(
           children: [
-            Icon(Icons.play_arrow, color: AppColors.youtubePrimary),
+            Container(
+              height: 25,
+              width: 35,
+              decoration: BoxDecoration(
+                color: AppColors.youtubePrimary,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Icon(Icons.play_arrow, color: AppColors.iconDefault)),
             const SizedBox(width: 8),
             Text(
               AppStrings.appName,
@@ -100,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Divider(color: AppColors.divider),
           _buildSectionHeader(AppStrings.sectionLibrary),
           YoutubeNavFile(
-            icon: Icons.abc,
+            icon: Icons.history,
             label: AppStrings.navHistory,
             onTap: () => _openUrl(
               AppStrings.navHistory,
@@ -134,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           YoutubeNavFile(
-            icon: Icons.question_mark,
+            icon: Icons.help,
             label: AppStrings.navHelp,
             onTap: () => _openUrl(
               AppStrings.navHelp,

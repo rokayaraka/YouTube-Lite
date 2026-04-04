@@ -38,7 +38,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.youtubePrimary),
         scaffoldBackgroundColor: AppColors.backgroundDark,
-      ),
+        iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+            foregroundColor: AppColors.iconDefault,
+          ),
+      ),),
       home: const HomeScreen(),
     );
   }

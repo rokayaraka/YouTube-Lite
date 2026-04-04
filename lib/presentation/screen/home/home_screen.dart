@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundDark,
       appBar: AppBar(
+        
         backgroundColor: AppColors.backgroundDark,
         elevation: 0,
         title: Row(

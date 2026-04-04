@@ -9,7 +9,6 @@ import 'package:youtube_lite_webview/presentation/screen/home/home_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Ensure the correct WebView backend is available before any WebViewWidget is built.
   if (WebViewPlatform.instance == null) {
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:

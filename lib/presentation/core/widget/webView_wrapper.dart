@@ -39,6 +39,20 @@ class _WebViewWrapperState extends State<WebViewWrapper> {
             min-height: 0 !important;
           }
 
+          ytm-pivot-bar-renderer,
+          ytm-bottom-nav-bar-renderer,
+          ytm-bottom-navigation-bar-renderer,
+          #pivot-bar,
+          #bottom-nav,
+          #bottom-navigation,
+          #guide,
+          ytd-mini-guide-renderer {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+          }
+
           ytd-app,
           ytd-page-manager,
           #content,
